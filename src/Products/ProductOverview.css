@@ -1,0 +1,112 @@
+.EachContent .WrapUpperActions{
+	display: flex;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.EachContent .WrapUpperActions h1{
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	margin-bottom: 30px;
+}
+.EachContent .WrapUpperActions .Wrap .Actions{
+	display: flex;
+	font-size: 30px;
+	font-weight: 700;
+	align-items: center;
+	transform: translateX(-10px);
+	overflow: hidden;
+}
+
+.EachContent .rate{
+	display: flex;
+	width: fit-content;
+}
+.EachContent .Wrap .rate button{
+	cursor: pointer;
+	border: 0px;
+}
+.EachContent .Wrap .rate button:nth-child(1){
+	border-radius: 10px 0px 0px 10px;
+}
+.EachContent .Wrap .rate button:nth-child(5){
+	border-radius: 0px 10px 10px 0px;
+}
+.EachContent .Wrap .rate img{
+	width: 50px;
+	height: 50px;
+}
+.EachContent .Wrap select{
+	width: 150px;
+	background-color: #b8b8b8d7;
+	font-size: 20px;
+	outline: none;
+	border: 0px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+.EachContent .Wrap select option{
+	cursor: pointer;
+}
+.EachContent .WrapUpperActions .Wrap .Actions img{
+	width: 30px;
+	height: fit-content;
+}
+
+.EachContent .WrapUpperActions .Wrap .Actions button{
+	width: fit-content;
+	height: fit-content;
+	overflow: hidden;
+	padding: 5px 25px;
+	font-size: 20px;
+	color: white;
+	border: 0;
+	border-radius: 20px;
+	background: radial-gradient(#5f5a5a, #b1b1b1);
+	margin: 20px;
+	transition: all .5s;
+	cursor: pointer;
+}
+.EachContent .WrapUpperActions .Wrap .Actions button:hover{
+	background: linear-gradient( 45deg,#5f5a5a, #b1b1b1);
+}
+.EachContent .WrapUpperActions .Wrap .Actions button:active{
+	background: radial-gradient(#b1b1b101 ,#5f5a5a);
+}
+
+.EachContent .product-review, .EachContent .hide{
+	background-color: #b1b1b1;
+	width: 100%;
+	color: #5f5a5a;
+	height: fit-content;
+	margin: 20px 20px 30px 0px;
+	padding: 20px;
+}
+.EachContent .product-review .show, .EachContent .hide .show{
+	display: flex;
+	align-items: center;
+}
+.EachContent .product-review .show h1,
+.EachContent .hide .show h1{
+	width: fit-content;
+	margin-right: auto;
+}
+.EachContent .product-review  h3{
+	margin: 20px;
+}
+.EachContent .product-review .show input,
+.EachContent .hide .show input{
+	margin: 0px 30px;
+	padding: 20px;
+	font-size: 20px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-weight: 600;
+	background-color: #4960b2dc;
+	border: none;
+	border-radius: 20px;
+	cursor: pointer;
+}
+.EachContent .hide .show, .EachContent .product-review .show{
+	margin: 0px 30px 20px 0px;
+}
+.EachContent .hide{
+	height: 70px;
+	overflow-y: hidden;
+}

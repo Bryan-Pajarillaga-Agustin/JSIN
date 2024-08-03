@@ -1,0 +1,85 @@
+#Header{
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	background-color: #b9b8bbee;
+}
+#Header #title{
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-size: 40px;
+	font-style: oblique;
+	color: #303a64d3;
+	height: fit-content;
+	margin-right: auto;
+	width: 360px;
+	word-break: normal;
+	margin-left: 30px;
+}
+#Header .wrap-header{
+	display: flex;
+	width: 100%;
+	align-items: center;
+	margin: 20px 20px 20px 15px;
+}
+.links{
+	display: flex;
+	align-items: center;
+}
+.links li{
+	width: fit-content;
+	
+}
+.links li button{
+	margin: 10px;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	font-weight: 800;
+	font-style: italic;
+	border: 0;
+	background-color: transparent;
+	cursor: pointer;
+	transition: all .3s;
+	display: flex;
+	flex-direction: column;
+}
+.links li button:hover{
+	filter: drop-shadow( 3px 3px 2px #3700ff);
+}
+
+.links li .activeButt span{
+	width: 100%;
+	height: fit-content;
+	border-top: 2px solid #475c7ed0;
+	animation: focused .4s linear;
+}
+.activeButt{
+	filter: drop-shadow( 3px 3px 2px #3700ff);
+	color: #303a64d3;
+}
+@keyframes focused {
+	from{
+		transform: rotateY(90deg);
+	} to {
+		transform: rotateY(0deg);
+	}
+}
+.links li button:focus, .links li img:focus{
+	filter: drop-shadow( 3px 3px 2px #3700ff);
+	color: #303a64d3;
+}
+@media (max-width: 900px){
+	#Header img{
+		width: 20px;
+		height: 20px;
+	}
+	#Header{
+		height: 60px;
+	}
+	#Header #title{
+		font-size: 30px;
+		width: fit-content;
+	}
+	.links li{
+		font-size: 10px;
+		margin: 5px 5px 5px 5px;
+	}
+}
