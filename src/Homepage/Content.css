@@ -248,7 +248,7 @@
 
 @media (max-width: 500px) {
 	.Main_Content{
-		transform: translateX(-11px);
+		transform: translateX(-14px);
 	}
 	.Main_Content .content-wrap{
 		height: fit-content;
@@ -327,13 +327,10 @@
 		font-size: 25px;
 	}
 	.content-wrap .right-content .Log-in input{
-		height: fit-content;
-		font-size: 10px;
+		font-size: 20px;
 		margin: 5px;
 	}
 	.content-wrap .right-content .Log-in input:nth-of-type(1){
-		height: fit-content;
-		font-size: 10px;
 		margin-top: 40px;
 	}
 	.Log-in label:nth-of-type(2){
@@ -342,7 +339,7 @@
 	}
 	.Log-in label:nth-of-type(1){
 		font-size: 15px;
-		transform: translate(-60px, -40px);
+		transform: translate(-60px, -55px);
 	}
 	.content-wrap .right-content .Log-in button{
 		height: fit-content;
