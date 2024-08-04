@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
-import FruitOverView from "./ProductOverview"
-import './ProductOverview.css'
+import FruitOverView from "ProductOverview"
+import 'ProductOverview.css'
 export default function Products({buttons, setActive, onhandleItems, itemNum}){	
 	const [FruitProducts, setFruitProducts] = useState([])
 	const [EachFruit, setEachFruit] = useState(0)
@@ -16,7 +16,7 @@ export default function Products({buttons, setActive, onhandleItems, itemNum}){
 						 isShown: "true",
 						 price: 20,
 						 sold_items: 0,
-						 image: "./Images/apple.jpg",
+						 image: "Images/apple.jpg",
 						 description: "A popular fruit with a crisp texture and sweet or tart flavor, available in various colors like red, green, and yellow."
 					},
 					{
@@ -25,7 +25,7 @@ export default function Products({buttons, setActive, onhandleItems, itemNum}){
 						isShown: "true",
 						price: 36,
 						sold_items: 0,
-						image: "./Images/Pineapple.jpg",
+						image: "Images/Pineapple.jpg",
 						description: " A tropical fruit with a spiky outer skin and sweet, juicy yellow flesh, known for its tangy-sweet taste."
 						
 					},
@@ -34,7 +34,7 @@ export default function Products({buttons, setActive, onhandleItems, itemNum}){
 						rating: -1,
 						isShown: "true",
 						price: 24,
-						image: "./Images/Grapes.jpg",
+						image: "Images/Grapes.jpg",
 						description: "Small, juicy fruits that grow in clusters, coming in different colors like red, green, and purple, often used to make wine or eaten fresh."
 					},
 					{
@@ -43,7 +43,7 @@ export default function Products({buttons, setActive, onhandleItems, itemNum}){
 						isShown: "true",
 						price: 16,
 						sold_items: 0,
-						image: "./Images/Cherry.jpg",
+						image: "Images/Cherry.jpg",
 						description: "Small, round fruits with a juicy flesh and a single hard seed inside, known for their sweet and tart flavors."
 					},
 					{
@@ -52,7 +52,7 @@ export default function Products({buttons, setActive, onhandleItems, itemNum}){
 						isShown: "true",
 						price: 18,
 						sold_items: 0,
-						image: "./Images/Strawberry.jpg",
+						image: "Images/Strawberry.jpg",
 						description: "Bright red, heart-shaped fruits with a sweet and slightly tart taste, commonly used in desserts, jams, and smoothies."
 					},
 					{
@@ -61,7 +61,7 @@ export default function Products({buttons, setActive, onhandleItems, itemNum}){
 						isShown: "true",
 						price: 14,
 						sold_items: 0,
-						image: "./Images/Banana.jpg",
+						image: "Images/Banana.jpg",
 						description: "Long, curved fruits with a yellow skin and creamy flesh, rich in potassium and a popular snack worldwide."
 					},
 					{
@@ -70,7 +70,7 @@ export default function Products({buttons, setActive, onhandleItems, itemNum}){
 						isShown: "true",
 						price: 40,
 						sold_items: 0,
-						image: "./Images/Dragon_fruit.jpg",
+						image: "Images/Dragon_fruit.jpg",
 						description: "A vibrant fruit with a pink or yellow skin and white or red flesh speckled with black seeds, known for its mild, sweet flavor."
 					},
 					{
@@ -79,7 +79,7 @@ export default function Products({buttons, setActive, onhandleItems, itemNum}){
 						isShown: "true",
 						price: 36,
 						sold_items: 0,
-						image: "./Images/Mango.jpg",
+						image: "Images/Mango.jpg",
 						description: "A tropical fruit with a smooth, golden skin and juicy, sweet flesh, often called the king of fruits for its rich flavor and aroma."
 					}
 			  ]

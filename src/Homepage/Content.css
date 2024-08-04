@@ -248,7 +248,7 @@
 
 @media (max-width: 500px) {
 	.Main_Content{
-		transform: translateX(-10px);
+		transform: translateX(-11px);
 	}
 	.Main_Content .content-wrap{
 		height: fit-content;
