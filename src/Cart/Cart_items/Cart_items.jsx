@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 const database = firebase.database()
-export default function CartItems({name, price, totalCosts, readCartPrice, image, idx}){
+export default function CartItems({name, price, itemNum, readCartPrice, image, idx}){
 	
 	let someData = {nothing: "null"}
 	let priceData
@@ -45,11 +45,9 @@ export default function CartItems({name, price, totalCosts, readCartPrice, image
 			<div className="item-content">
 				<div className="wrap-elements">
 					<h2>{name}</h2>
-					<button id="remove-item" onClick={()=>{removeItem(idx), readCartPrice()}}>x</button>
+					<button id="remove-item" onClick={()=>{removeItem(idx), readCartPrice(), itemNum()}}>x</button>
 				</div>
 				<h3 id="price">{price} PHP</h3>
-
-
 			</div>
 		</div>
 	)

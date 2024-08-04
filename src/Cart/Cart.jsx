@@ -3,7 +3,7 @@ import "./Cart.css"
 import CartItems from "./Cart_items/Cart_items"
 
 const database = firebase.database()
-export default function Cart({cartState, handleCartState, Total, totalCosts}){
+export default function Cart({cartState, handleCartState, Total, totalCosts, itemNum}){
 	
 	let userLoggedIn
 	const someData = [{nothing: "null"}]
@@ -88,7 +88,7 @@ export default function Cart({cartState, handleCartState, Total, totalCosts}){
 		return(
 			<>
 				<div className={cartState == 1 ? "Cart-Wrapper" : "Cart-Wrapper notOnCart"}>
-				<button className="back" id="backSign" onClick={()=>handleCartState(0)}>&nbsp;←</button>
+					<button className="back" id="backSign" onClick={()=>handleCartState(0)}>&nbsp;←</button>
 
 					<img src="Images/cart.png" id="image" width={170} height={170} alt="" />
 					<h1 id="Cart-Logo">Cart</h1>
@@ -100,7 +100,7 @@ export default function Cart({cartState, handleCartState, Total, totalCosts}){
 
 					<div className="Cart_Container">
 					{stateOfCart[stateOfCart.length - 1].nothing != someData[0].nothing ? RenderedUsers.map((users)=>{
-						if(users.isLoggedin == true && users.Cart != [{nothing: "null"}]){
+						if(users.isLoggedin == true && users.Cart[0].nothing != "null"){
 							return (users.Cart.map((item, idx)=>
 							<CartItems 
 							key={idx} 
@@ -110,7 +110,9 @@ export default function Cart({cartState, handleCartState, Total, totalCosts}){
 							name={item.name} 
 							price={item.price} 
 							set={item.set}
-							readCartPrice={()=>readCartPrice()}  />))
+							readCartPrice={()=>readCartPrice()}
+							itemNum={()=>itemNum()}  />))
+							
 						} 
 					}) : console.log()}
 					</div>

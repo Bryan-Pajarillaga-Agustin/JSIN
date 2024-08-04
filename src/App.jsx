@@ -20,7 +20,6 @@ export default function App(){
 	}
 	function handleItems(item){
 		if(JSON.parse(localStorage.getItem("LoginDevices")) != null){
-			console.log(item.name)
 			let RenderData
 			const user_ref = database.ref("users")
 			user_ref.on("value", function(snapshot){
@@ -49,7 +48,7 @@ export default function App(){
 	}
 	let Items = 0
 	function itemNum(){
-		let users, cartU
+		let users
 		const ref = database.ref("users")
 		ref.on("value", function(snapshot){
 			var data = snapshot.val()
@@ -58,11 +57,13 @@ export default function App(){
 			for(let i = 0; i < users.length; i++){
 				if(users[i].isLoggedin == true && users[i].Cemail == localBase){
 					Items = users[i].Cart.length
-					setTotalItems(Items)
+					if(users[i].Cart[0].name){
+						setTotalItems(Items)
+					} else {
+						setTotalItems("0")
+					}
 					break
-				} else {
-					setTotalItems(0)
-				}
+				} 
 			}
 		})
 	}
@@ -75,22 +76,24 @@ export default function App(){
 			Items = 0
 			for(let i = 0; i < users.length; i++){
 				if(users[i].isLoggedin == true && users[i].Cemail == localBase){
-					Items = users[i].Cart.length
-					setTotalItems(Items)
-					break
-				} else {
-					setTotalItems(0)
-				}
+					if(users[i].Cart[0].nothing != "null"){
+						Items = users[i].Cart.length
+						setTotalItems(Items)
+					}else{
+						setTotalItems(0)
+					}
+					
+				} 
 			}
 		})
 	}, [])
-	const [TotalItems, setTotalItems] = useState()
+	const [TotalItems, setTotalItems] = useState(0)
 	return(
 		<>
 			<Header buttons={buttons} setActive={setActive}  handleCheckCart={(par)=>handleCheckCart(par)}  TotalItems={TotalItems} Items={Items}></Header>
 			<MainContent buttons={buttons} getUsers={getUsers} onHandleUsers={(par)=>handleGetUsers(par)} setActive={setActive}></MainContent>
 			<Products buttons={buttons} setActive={setActive} getUsers={getUsers} onhandleItems={(item)=>{handleItems(item)}} itemNum={()=>itemNum()}></Products>
-			{getUsers != null ? <Cart getUsers={getUsers} Total={Total} totalCosts={totalCosts} cartState={cartState} handleCartState={(par)=>handleCheckCart(par)}  />
+			{getUsers != null ? <Cart getUsers={getUsers} Total={Total} totalCosts={totalCosts} cartState={cartState} itemNum={()=>itemNum()} handleCartState={(par)=>handleCheckCart(par)}  />
 			: console.log()}
    	</>
 	)

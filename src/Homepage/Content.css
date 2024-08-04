@@ -249,7 +249,7 @@
 @media (max-width: 500px) {
 	.Main_Content .content-wrap{
 		height: fit-content;
-		width: 410px;
+		width: 350px;
 		display: flex;
 		flex-direction: column;
 		gap: 60px;
@@ -270,38 +270,40 @@
 		transform: translateX(-29px);
 	}
 	.left-text-contents{
-		width: 350px;
-		height: 200px;
+		width: 290px;
+		height: 170px;
 		padding: 10px;
 		position: relative;
 		top: -20px;
 		left: -20px;
 	}
 	.left-text-contents h1{
-		font-size: 30px;
-		margin: 20px 30px;
+		font-size: 25px;
+		margin: 20px 20px;
 		margin-top: 30px;
 	}
 	.left-text-contents h1 #react-icon{
 		width: 50px;
 		height: 50px;
 		position: absolute;
-		right: 30px;
+		right:20px;
 	}
 	.left-text-contents p{
-		font-size: 16px;
+		font-size: 11px;
 	}
 	.left-content .down-left-corner{
 		position: relative;
 		bottom: -30px;
-		left: -110px;
+		left: -140px;
 	}
 	.left-content .down-left-corner #check-prod{
-		font-size: 15px;
+		font-size: 12px;
+		font-weight: 1000;
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
 	}
 	.left-content .down-left-corner #products{
-		font-size: 15px;
-		padding: 5px 10px;
+		font-size: 12px;
+		padding: 3px 8px;
 
 	}
 

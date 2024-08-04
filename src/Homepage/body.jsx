@@ -18,7 +18,6 @@ function MainContent({buttons, setActive, onHandleUsers}){
 	const passwordInput = useRef(null)
 	const Active_Image = useRef(null)
 	const Active_Name = useRef(null)
-	const [userLists, setUsers] = useState([])
 	const SignInForm = useRef(null)
 	const SignPersonal = useRef(null)
 	const Cemail = useRef(null)
@@ -32,22 +31,41 @@ function MainContent({buttons, setActive, onHandleUsers}){
 	const Sex = useRef(null)
 	const Civil_status = useRef(null)
 	const Job = useRef(null)
-	function ChangeProfile(event){
-		fileItem = event.target.files[0]
-		let FileName = fileName.current.value
-		let storageRef = storage.ref("images/"+FileName.slice(10))
-		let uploadTask = storageRef.put(fileItem)
-		
-		uploadTask.on("state_changed", () => {
-			uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-					console.log(url)
-					profileLink = url
-					profileImg.current.style.backgroundImage = "url('"+profileLink+"')"
-			
-				})
-			})
-
-	}
+	const [userLists, setUsers] = useState(null)
+	function ChangeProfile(event) {
+		const fileItem = event.target.files[0];
+		const FileName = fileName.current.value;
+		const uniqueId = Date.now().toString();
+		const storageRef = storage.ref("images/" + uniqueId + "_" + fileItem.name);
+	 
+		// Track upload progress
+		const uploadTask = storageRef.put(fileItem);
+		uploadTask.on(
+		  "state_changed",
+		  (snapshot) => {
+			 // Observe state change events such as progress, pause, and resume
+			 const progress = Math.floor(((snapshot.bytesTransferred / snapshot.totalBytes) * 100), 5);
+			 profileImg.current.textContent = "Uploading: " + progress
+			 // Update UI with progress information
+		  },
+		  (error) => {
+			 // Handle unsuccessful uploads
+			 console.error("Error uploading file:", error);
+			 // Display an error message to the user
+		  },
+		  () => {
+			 // Handle successful uploads on complete
+			 profileImg.current.textContent = "";
+			alert("Upload complete!")
+			 // Get the download URL
+			 uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+				console.log(url);
+				profileLink = url;
+				profileImg.current.style.backgroundImage = "url('" + profileLink + "')";
+			 });
+		  }
+		);
+	 }
 	function CheckViolation(){
 		Cemail.current.value == "" ? violation0.current.textContent = "Fill this form first!":violation0.current.textContent = ""
 		Cpass.current.value == "" ? violation1.current.textContent = "Fill this form first!":violation1.current.textContent = ""
@@ -149,46 +167,42 @@ function MainContent({buttons, setActive, onHandleUsers}){
 		profileImg.current.style.backgroundImage = `url('./public/Images/NoProf.jpg')`
 	}
 	function Login(){
-			
-		
+		const localVariable = JSON.parse(localStorage.getItem("LoginDevices"))
+		let userUpdate = userLists
 		for(let i = 0; i < userLists.length; i++){
 			if(userLists[i].Cemail == usernameInput.current.value &&
 				userLists[i].password == passwordInput.current.value
 			){
-				const updateLogInState = setUsers(prevUsers => {
-					prevUsers.map((eachUser, idx)=>{
-						if(idx == i){
-							eachUser.isLoggedin = true
-							localStorage.setItem("LoginDevices", JSON.stringify(eachUser.Cemail))
-							database.ref("users/").set(prevUsers)
-						}
-					})
-				})
+				userUpdate[i].isLoggedin = true
+				setUsers(userUpdate)
 				passwordInput.current.value = ""
 				alert("Disclaimer! \n\n You are not Logged In, this is just a beta web app and there is no Logging in nor create an account on this web app. Thank you in advance and Maganda or Pogi ka kung nakita mo to!😎😎")
-				// setLoggedIn(1)
-				return updateLogInState
+
+
+				database.ref("users/").set(userUpdate)
+				localStorage.setItem("LoginDevices", JSON.stringify(userUpdate[i].Cemail))
+					
+				setDoesActive(1)
+				Active_Image.current.style.backgroundImage = `url('${userUpdate[i].profilePic}')`
+				Active_Name.current.textContent = `Hello From ${userUpdate[i].First_name}!`
 			}
-		}
-		
+		}	
 	}
 	function LogOut(){
-		for(let i = 0; i < userLists.length; i++){
-			if(userLists[i].isLoggedin == true){
-				const updateLogInState = setUsers(prevUsers => {
-					prevUsers.map((eachUser, idx)=>{
-						if(idx == i){
-							eachUser.isLoggedin = false
-							setDoesActive(0)
-							localStorage.clear("LoginDevices")
-							database.ref("users/").set(prevUsers)
-						}
-					})
-					return updateLogInState
-				})
+		const localVariable = JSON.parse(localStorage.getItem("LoginDevices"))
+		const userUpdate = userLists
+
+		for(let i = 0; i < userUpdate.length; i++){
+			if(userUpdate[i].isLoggedin == true && userUpdate[i].Cemail == localVariable){
+				userUpdate[i].isLoggedin = false
+				setDoesActive(0)
+				setUsers(userUpdate)
+				localStorage.clear("LoginDevices")
+				database.ref("users/").set(userUpdate)
 			}
 		}
 	}
+	
 	useEffect(()=>{
 		const localVariable = JSON.parse(localStorage.getItem("LoginDevices"))
 		const user_ref = database.ref("users")
@@ -248,7 +262,26 @@ function MainContent({buttons, setActive, onHandleUsers}){
 							<div className='Display_Actived_Profile' ref={Active_Image}></div>
 							<div className='wrapper-active'>
 								<h1 ref={Active_Name}></h1>
-								 <button >Check Your Info</button>
+								 <button onClick={()=>{
+									const localVariable = JSON.parse(localStorage.getItem("LoginDevices"))
+									for(let i = 0; i < userLists.length; i++){
+										if(userLists[i].isLoggedin == true && localVariable == userLists[i].Cemail){
+											alert(`
+Email: '${userLists[i].Cemail}' \n
+Password: '${userLists[i].password}' \n
+First Name: '${userLists[i].First_name}' \n
+Middle Name: '${userLists[i].Middle_name}' \n
+Last Name: '${userLists[i].Last_name}' \n
+Job: '${userLists[i].Job}' \n
+Sex: '${userLists[i].Sex}' \n
+Civil Status: '${userLists[i].Civil_status}' \n
+Age: '${userLists[i].Age}' \n
+BirthDay: '${userLists[i].Bday}' \n
+												`)
+											break
+										}
+									}
+								 }}>Check Your Info</button>
 								 <button onClick={()=>LogOut()}>Log Out</button>
 							</div>
 						</div>

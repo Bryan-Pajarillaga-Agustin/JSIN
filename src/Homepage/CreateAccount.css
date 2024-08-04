@@ -188,7 +188,7 @@ button:active{
 	margin: 20px 40px;
 }
 .SigninBox .UserForm #profiledis{
-	background-image: url('./public/Images/NoProf.jpg');
+	background-image: url('Images/NoProf.jpg');
 	border-radius: 100%;
 	background-position: center;
 	background-size: 100% 100%;
@@ -275,4 +275,14 @@ button:active{
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	width: 300px;
 	text-align: left;
+}
+
+@media (max-width: 500px){
+	.SigninBox{
+		padding: 0px;
+	}
+	.SigninBox .SignInForm{
+		width: 350px;
+		height: 350px;
+	}
 }
