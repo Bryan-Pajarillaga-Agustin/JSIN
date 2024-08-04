@@ -90,7 +90,7 @@ export default function Cart({cartState, handleCartState, Total, totalCosts}){
 				<div className={cartState == 1 ? "Cart-Wrapper" : "Cart-Wrapper notOnCart"}>
 				<button className="back" id="backSign" onClick={()=>handleCartState(0)}>&nbsp;←</button>
 
-					<img src="./public/Images/cart.png" id="image" width={170} height={170} alt="" />
+					<img src="Images/cart.png" id="image" width={170} height={170} alt="" />
 					<h1 id="Cart-Logo">Cart</h1>
 
 					<div className={stateOfCart[stateOfCart.length - 1].nothing == someData[0].nothing ? "No-NoItems" : "wrap_elements"}>

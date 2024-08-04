@@ -42,9 +42,11 @@ function MainContent({buttons, setActive, onHandleUsers}){
 			uploadTask.snapshot.ref.getDownloadURL().then((url) => {
 					console.log(url)
 					profileLink = url
-					profileImg.current.style.backgroundImage = `url('${profileLink}')`
+					profileImg.current.style.backgroundImage = "url('"+profileLink+"')"
+			
+				})
 			})
-		})
+
 	}
 	function CheckViolation(){
 		Cemail.current.value == "" ? violation0.current.textContent = "Fill this form first!":violation0.current.textContent = ""
@@ -188,6 +190,7 @@ function MainContent({buttons, setActive, onHandleUsers}){
 		}
 	}
 	useEffect(()=>{
+		const localVariable = JSON.parse(localStorage.getItem("LoginDevices"))
 		const user_ref = database.ref("users")
 		user_ref.on("value", function(snapshot){
 			var data = snapshot.val()
@@ -202,7 +205,7 @@ function MainContent({buttons, setActive, onHandleUsers}){
 				setUsers(data)
 				onHandleUsers(data)
 				for(let i = 0; i < data.length; i++ ){
-					if(data[i].isLoggedin == true){
+					if(data[i].isLoggedin == true && localVariable == data[i].Cemail){
 						setDoesActive(1)
 						Active_Image.current.style.backgroundImage = `url('${data[i].profilePic}')`
 						Active_Name.current.textContent = `Hello From ${data[i].First_name}!`
@@ -225,7 +228,7 @@ function MainContent({buttons, setActive, onHandleUsers}){
 						</div>
 
 						<div className="down-left-corner">
-							<p>Check Our Products</p>
+							<p id='check-prod'>Check Our Products</p>
 							<button id="products" onClick={()=>SetTabs(1)}>Products</button>
 						</div>
 						

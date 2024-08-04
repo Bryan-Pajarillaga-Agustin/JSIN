@@ -22,7 +22,7 @@ a{
 		opacity: 1;
 		transform: translateX(0px);
 	} 99% {
-		transform: translateX(50vh);
+		transform: translateX(50px);
 	} 100% {
 		display: none;
 		opacity: 0;
@@ -39,9 +39,7 @@ a{
 }
 .Right-Contents{
 	width: 100%;
-	height: 90vh;
-	overflow: hidden;
-	overflow-y: scroll;
+	height: 100%;
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	font-size: 20px;
 	font-weight: 700;
@@ -54,7 +52,6 @@ a{
 .Right-Contents .EachContent{
 	width: 100%;
 	height: 600px;
-	overflow: hidden;
 }
 .Right-Contents .EachContent img{
 	margin: 10px 20px;
@@ -111,6 +108,42 @@ a{
 	}
 	to{
 		filter: drop-shadow(5px 5px 10px black);
+	}
+}
+
+/* -------------------------------------------------
+					CP Version
+---------------------------------------------------
+*/
+
+@media (max-width: 500px){
+	.Right-Contents{
+		padding: 5px;
+	}
+	.Right-Contents .EachContent{
+		width: 100%;
+		height: 600px;
+	}
+	.Right-Contents .EachContent img{
+		margin: 5px 7px;
+		display: block;
+		width: 80px;
+		height: 80px;
+	}
+	.Left-bar{
+		width: fit-content;
+		background-color: #7c7a8fc6;
+	}
+	.Left-bar .li_buttons{
+		width: 70px;
+	}
+	.Left-bar h1{
+		font-size: 10px;
+		height: 20px;
+	}
+	.Left-bar .li_buttons button, .Left-bar .li_buttons a{
+		height: 15px;
+		font-size: 7px;
 	}
 }
 
